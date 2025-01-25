@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversão de Tempo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conversão de Tempo</h1>
+        <label for="segundos">Digite o tempo em segundos:</label>
+        <input type="number" id="segundos" placeholder="Ex: 31556952" min="0">
+        <button onclick="converterTempo()">Converter</button>
+        <div class="result" id="resultado"></div>
+    </div>
+    <script>
+        function converterTempo() {
+            const segundos = parseInt(document.getElementById('segundos').value);
+            if (isNaN(segundos) || segundos < 0) {
+                document.getElementById('resultado').innerText = "Por favor, insira um número válido!";
+                return;
+            }
+
+            const anos = Math.floor(segundos / 31536000); // 1 ano = 31536000 segundos
+            const dias = Math.floor((segundos % 31536000) / 86400); // 1 dia = 86400 segundos
+            const horas = Math.floor((segundos % 86400) / 3600); // 1 hora = 3600 segundos
+            const minutos = Math.floor((segundos % 3600) / 60); // 1 minuto = 60 segundos
+            const restoSegundos = segundos % 60;
+
+            document.getElementById('resultado').innerText = 
+                `${anos} anos, ${dias} dias, ${horas} horas, ${minutos} minutos e ${restoSegundos} segundos`;
+        }
+    </script>
+</body>
+</html>
