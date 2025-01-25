@@ -1,0 +1,2 @@
+-A common time converter
+-which should be entered in seconds ⌚
